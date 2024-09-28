@@ -122,6 +122,7 @@
         function addItem(item, grid, includeValue = false) {
             const a = document.createElement('a');
             a.href = item.link;
+            a.target = "_blank"
             a.className = 'bg-white rounded-lg shadow-md p-4 hover:shadow-lg transition-all duration-300 border-2 border-transparent hover:border-monarch group h-32 flex flex-col justify-center items-center relative overflow-hidden';
             a.innerHTML = `
                 <div class="transition-all duration-300 group-hover:-translate-y-2 group-hover:scale-75">
