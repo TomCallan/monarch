@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" class="h-full">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -26,6 +27,7 @@
         }
     </script>
 </head>
+
 <body class="h-full bg-gray-50 flex flex-col">
     <header class="bg-white shadow-md">
         <div class="container mx-auto px-4 py-6">
@@ -39,7 +41,7 @@
             <h2 class="text-2xl font-semibold text-gray-800 mb-6">Company Metrics</h2>
             <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6">
                 <div class="bg-white rounded-lg shadow-md p-6 border-t-4 border-monarch-light">
-                    <p class="text-3xl font-bold text-monarch">$ - </p>
+                    <p class="text-3xl font-bold text-monarch"><span id="productRevenue"> - </span></p>
                     <p class="text-gray-600">Annual revenue</p>
                 </div>
                 <div class="bg-white rounded-lg shadow-md p-6 border-t-4 border-monarch">
@@ -62,14 +64,14 @@
         </section>
 
         <section class="mb-12">
-            <h2 class="text-2xl font-semibold text-gray-800 mb-6">Product Suite</h2>
+            <h2 class="text-2xl font-semibold text-gray-800 mb-6">Our Product Suite</h2>
             <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                 <!-- Product items will be dynamically inserted here -->
             </div>
         </section>
 
         <section class="mb-13">
-            <h2 class="text-2xl font-semibold text-gray-800 mb-6">Assets</h2>
+            <h2 class="text-2xl font-semibold text-gray-800 mb-6">Our Assets</h2>
             <div id="assetGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                 <!-- Asset items will be dynamically inserted here -->
             </div>
@@ -84,65 +86,105 @@
 
     <script>
         const productsData = [
-            { name: "pyine", link: "https://github.com/tomcallan/pyine", description: "Innovative solution for cross platform quant" }
+            { name: "pyine", link: "https://github.com/tomcallan/pyine", description: "Innovative solution for cross platform quant", isDev: false, isFree: false, isDeprecated: true },
         ];
-    
+
         const assetsData = [
-            { name: "NIF Ventures", link: "http://nifventures.co.uk/?i=1", description: "Fostering land equity exchange deals", value: NaN },
+            { name: "NIF Ventures", link: "http://nifventures.co.uk/?i=1", description: "Fostering land equity exchange deals", isDev: false, isFree: false, value: 0 }
         ];
-    
+
         const productGrid = document.getElementById('productGrid');
         const assetGrid = document.getElementById('assetGrid');
         const productCount = document.getElementById('productCount');
         const assetCount = document.getElementById('assetCount');
         const assetValue = document.getElementById('assetValue');
-    
+        const productRevenue = document.getElementById('productRevenue');
+
         function generateRandomColor() {
-            return '#' + Math.floor(Math.random()*16777215).toString(16);
+            return '#' + Math.floor(Math.random() * 16777215).toString(16);
         }
-    
-        const baseColor = generateRandomColor();
-        document.documentElement.style.setProperty('--base-color', baseColor);
-    
+
+        document.documentElement.style.setProperty('--base-color', generateRandomColor());
+
         const productSection = document.querySelector('section:nth-of-type(2)');
         const assetSection = document.querySelector('section:nth-of-type(3)');
 
         if (productsData.length === 0) {
-        productSection.style.display = 'none';
+            productSection.previousElementSibling.style.display = 'none';
+            productSection.style.display = 'none';
         }
 
         if (assetsData.length === 0) {
-        assetSection.style.display = 'none';
+            assetSection.previousElementSibling.style.display = 'none';
+            assetSection.style.display = 'none';
         }
-    
+
         function formatCurrency(value) {
             return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 0, maximumFractionDigits: 1 }).format(value);
         }
-    
-        function addItem(item, grid, includeValue = false) {
+
+        function addItem(item, grid) {
             const a = document.createElement('a');
             a.href = item.link;
-            a.target = "_blank"
-            a.className = 'bg-white rounded-lg shadow-md p-4 hover:shadow-lg transition-all duration-300 border-2 border-transparent hover:border-monarch group h-32 flex flex-col justify-center items-center relative overflow-hidden';
+            let className = 'bg-white rounded-lg shadow-md p-4 hover:shadow-lg transition-all duration-300 border-2 ';
+            if (item.isDev) {
+                className += 'border-yellow-400 bg-yellow-100';
+            } else if (item.isDeprecated) {
+                className += 'border-gray-400 bg-gray-100';
+            } else {
+                className += 'border-transparent hover:border-monarch';
+            }
+            className += ' group h-32 flex flex-col justify-center items-center relative overflow-hidden';
+            a.className = className;
+
+            let valueDisplay = '';
+            if (item.isDev) {
+                valueDisplay = '<p class="text-sm text-yellow-600">Under Construction</p>';
+            } else if (item.isDeprecated) {
+                valueDisplay = '<p class="text-sm text-gray-600">Deprecated</p>';
+            } else if (!item.isFree) {
+                valueDisplay = `<p class="text-sm text-monarch-dark">${formatCurrency(item.value)}</p>`;
+            } else {
+                valueDisplay = '<p class="text-sm text-green-600">Free</p>';
+            }
+
+            let bgColor = item.isDev ? 'bg-yellow-400 text-black' :
+                item.isDeprecated ? 'bg-gray-400 text-white' :
+                    'bg-monarch text-white';
+
             a.innerHTML = `
-                <div class="transition-all duration-300 group-hover:-translate-y-2 group-hover:scale-75">
+                <div class="transition-all duration-300 group-hover:-translate-y-2 group-hover:scale-75 text-center">
                     <span class="text-lg font-semibold text-gray-800">${item.name}</span>
-                    ${includeValue ? `<p class="text-sm text-monarch-dark">${formatCurrency(item.value)}m</p>` : ''}
+                    ${valueDisplay}
                 </div>
-                <div class="absolute inset-x-0 bottom-0 bg-monarch text-white p-2 transform translate-y-full transition-transform duration-300 group-hover:translate-y-0">
+                <div class="absolute inset-x-0 bottom-0 ${bgColor} p-2 transform translate-y-full transition-transform duration-300 group-hover:translate-y-0">
                     <p class="text-sm">${item.description}</p>
                 </div>
             `;
+
+            if (item.isDev || item.isDeprecated) {
+                const statusBar = document.createElement('div');
+                statusBar.className = `absolute top-0 left-0 right-0 ${item.isDev ? 'bg-yellow-400' : 'bg-gray-400'} text-black text-xs text-center py-1`;
+                statusBar.textContent = item.isDev ? 'Under Construction' : 'Deprecated';
+                a.appendChild(statusBar);
+            }
+
             grid.appendChild(a);
         }
-    
+
         function updateMetrics() {
             productCount.textContent = productsData.length;
             assetCount.textContent = assetsData.length;
-            const totalAssetValue = assetsData.reduce((sum, asset) => sum + asset.value, 0);
+            const totalAssetValue = assetsData
+                .filter(item => !item.isFree && !item.isDev && item.value)
+                .reduce((sum, item) => sum + item.value, 0);
             assetValue.textContent = formatCurrency(totalAssetValue);
+            const totalProductValue = productsData
+                .filter(item => !item.isFree && !item.isDev && !item.isDeprecated && item.value)
+                .reduce((sum, item) => sum + item.value, 0);
+            productRevenue.textContent = formatCurrency(totalProductValue);
         }
-    
+
         productsData.forEach((product, index) => {
             setTimeout(() => {
                 addItem(product, productGrid);
@@ -151,10 +193,10 @@
                 }
             }, index * 100);
         });
-    
+
         assetsData.forEach((asset, index) => {
             setTimeout(() => {
-                addItem(asset, assetGrid, true);
+                addItem(asset, assetGrid);
                 if (index === assetsData.length - 1) {
                     updateMetrics();
                 }
@@ -162,4 +204,5 @@
         });
     </script>
 </body>
+
 </html>
