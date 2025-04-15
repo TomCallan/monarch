@@ -4,9 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Monarch AG</title>
+    <title>Monarch AG | Professional Consulting Services</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="icon" href="logo.png" type="image/jpeg">
     <script>
         tailwind.config = {
@@ -14,73 +15,219 @@
                 extend: {
                     colors: {
                         monarch: {
-                            light: 'var(--base-color)',
-                            DEFAULT: 'var(--base-color)',
-                            dark: 'var(--base-color)',
+                            light: '#4b6cb7',
+                            DEFAULT: '#3b5998',
+                            dark: '#2c3e50',
                         },
                     },
                     fontFamily: {
-                        sans: ['Poppins', 'sans-serif'],
+                        sans: ['Montserrat', 'sans-serif'],
+                        display: ['Playfair Display', 'serif'],
                     },
                 },
             },
         }
     </script>
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #3b5998 0%, #2c3e50 100%);
+        }
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+    </style>
 </head>
 
 <body class="h-full bg-gray-50 flex flex-col">
-    <header class="bg-white shadow-md">
-        <div class="container mx-auto px-4 py-6">
-            <h1 class="text-4xl font-bold text-monarch-dark">Monarch AG</h1>
-            <p class="text-xl text-gray-600 mt-2">Empowering growth, one product at a time.</p>
+    <nav class="bg-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-4">
+                <div class="w-10 h-10 bg-monarch rounded-full flex items-center justify-center text-white font-bold text-xl">M</div>
+                <span class="text-2xl font-display font-bold text-monarch-dark">Monarch AG</span>
+            </div>
+            <div class="hidden md:flex space-x-6 text-gray-600">
+                <a href="#" class="hover:text-monarch-dark transition-colors">Home</a>
+                <a href="#products" class="hover:text-monarch-dark transition-colors">Products</a>
+                <a href="#assets" class="hover:text-monarch-dark transition-colors">Assets</a>
+                <a href="#" class="hover:text-monarch-dark transition-colors">About</a>
+                <a href="#" class="hover:text-monarch-dark transition-colors">Contact</a>
+            </div>
+            <div class="md:hidden">
+                <button class="text-gray-600 hover:text-monarch-dark">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <header class="gradient-bg text-white py-16 md:py-24">
+        <div class="container mx-auto px-4 md:px-8 flex flex-col md:flex-row items-center">
+            <div class="md:w-1/2 mb-8 md:mb-0">
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-display font-bold leading-tight">Empowering Growth Through Innovation</h1>
+                <p class="text-xl md:text-2xl mt-4 md:mt-6 text-blue-100 font-light">Strategic consulting solutions for forward-thinking businesses.</p>
+                <div class="mt-8 flex space-x-4">
+                    <a href="#" class="bg-white text-monarch-dark px-6 py-3 rounded-md font-medium hover:bg-gray-100 transition-colors">Our Services</a>
+                    <a href="#" class="border border-white text-white px-6 py-3 rounded-md font-medium hover:bg-white hover:text-monarch-dark transition-colors">Contact Us</a>
+                </div>
+            </div>
+            <div class="md:w-1/2 flex justify-center">
+                <img src="/api/placeholder/600/400" alt="Business consulting" class="rounded-lg shadow-xl max-w-full h-auto" />
+            </div>
         </div>
     </header>
 
-    <main class="flex-grow container mx-auto px-4 py-8">
-        <section class="mb-12">
-            <h2 class="text-2xl font-semibold text-gray-800 mb-6">Company Metrics</h2>
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4 md:px-8">
+            <div class="max-w-4xl mx-auto text-center mb-16">
+                <h2 class="text-3xl font-display font-bold text-gray-800">Company Performance</h2>
+                <p class="text-lg text-gray-600 mt-4">Delivering measurable results through strategic initiatives.</p>
+            </div>
+            
             <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6">
-                <div class="bg-white rounded-lg shadow-md p-6 border-t-4 border-monarch-light">
-                    <p class="text-3xl font-bold text-monarch"><span id="productRevenue"> - </span></p>
-                    <p class="text-gray-600">Annual revenue</p>
+                <div class="bg-white rounded-lg shadow-lg p-6 border-b-4 border-monarch card-hover">
+                    <div class="flex items-center justify-center mb-4 text-monarch">
+                        <i class="fas fa-chart-line text-3xl"></i>
+                    </div>
+                    <p class="text-3xl font-bold text-gray-800 text-center"><span id="productRevenue"> - </span></p>
+                    <p class="text-gray-600 text-center">Annual Revenue</p>
                 </div>
-                <div class="bg-white rounded-lg shadow-md p-6 border-t-4 border-monarch">
-                    <p class="text-3xl font-bold text-monarch-dark"><span id="productCount">0</span></p>
-                    <p class="text-gray-600">Products offered</p>
+                
+                <div class="bg-white rounded-lg shadow-lg p-6 border-b-4 border-monarch card-hover">
+                    <div class="flex items-center justify-center mb-4 text-monarch">
+                        <i class="fas fa-box text-3xl"></i>
+                    </div>
+                    <p class="text-3xl font-bold text-gray-800 text-center"><span id="productCount">0</span></p>
+                    <p class="text-gray-600 text-center">Products Offered</p>
                 </div>
-                <div class="bg-white rounded-lg shadow-md p-6 border-t-4 border-monarch-dark">
-                    <p class="text-3xl font-bold text-monarch">3</p>
-                    <p class="text-gray-600">Team members</p>
+                
+                <div class="bg-white rounded-lg shadow-lg p-6 border-b-4 border-monarch card-hover">
+                    <div class="flex items-center justify-center mb-4 text-monarch">
+                        <i class="fas fa-users text-3xl"></i>
+                    </div>
+                    <p class="text-3xl font-bold text-gray-800 text-center">3</p>
+                    <p class="text-gray-600 text-center">Team Members</p>
                 </div>
-                <div class="bg-white rounded-lg shadow-md p-6 border-t-4 border-monarch-light">
-                    <p class="text-3xl font-bold text-monarch"><span id="assetCount">0</span></p>
-                    <p class="text-gray-600">Assets owned</p>
+                
+                <div class="bg-white rounded-lg shadow-lg p-6 border-b-4 border-monarch card-hover">
+                    <div class="flex items-center justify-center mb-4 text-monarch">
+                        <i class="fas fa-building text-3xl"></i>
+                    </div>
+                    <p class="text-3xl font-bold text-gray-800 text-center"><span id="assetCount">0</span></p>
+                    <p class="text-gray-600 text-center">Assets Owned</p>
                 </div>
-                <div class="bg-white rounded-lg shadow-md p-6 border-t-4 border-monarch">
-                    <p class="text-3xl font-bold text-monarch-dark"><span id="assetValue"> - </span></p>
-                    <p class="text-gray-600">Value of assets</p>
+                
+                <div class="bg-white rounded-lg shadow-lg p-6 border-b-4 border-monarch card-hover">
+                    <div class="flex items-center justify-center mb-4 text-monarch">
+                        <i class="fas fa-dollar-sign text-3xl"></i>
+                    </div>
+                    <p class="text-3xl font-bold text-gray-800 text-center"><span id="assetValue"> - </span></p>
+                    <p class="text-gray-600 text-center">Value of Assets</p>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section class="mb-12">
-            <h2 class="text-2xl font-semibold text-gray-800 mb-6">Product Suite</h2>
-            <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+    <section id="products" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4 md:px-8">
+            <div class="max-w-4xl mx-auto text-center mb-16">
+                <h2 class="text-3xl font-display font-bold text-gray-800">Product Suite</h2>
+                <p class="text-lg text-gray-600 mt-4">Innovative solutions designed to drive your business forward.</p>
+            </div>
+            
+            <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Product items will be dynamically inserted here -->
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section class="mb-13">
-            <h2 class="text-2xl font-semibold text-gray-800 mb-6">Assets</h2>
-            <div id="assetGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+    <section id="assets" class="py-16 bg-white">
+        <div class="container mx-auto px-4 md:px-8">
+            <div class="max-w-4xl mx-auto text-center mb-16">
+                <h2 class="text-3xl font-display font-bold text-gray-800">Strategic Assets</h2>
+                <p class="text-lg text-gray-600 mt-4">Resources that power our business and yours.</p>
+            </div>
+            
+            <div id="assetGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Asset items will be dynamically inserted here -->
             </div>
-        </section>
-    </main>
+        </div>
+    </section>
 
-    <footer class="bg-gray-800 text-white mt-12 py-6">
-        <div class="container mx-auto px-4 text-center">
-            <p>&copy; 2024 Monarch AG. All rights reserved.</p>
+    <section class="py-16 gradient-bg text-white">
+        <div class="container mx-auto px-4 md:px-8 text-center">
+            <h2 class="text-3xl font-display font-bold mb-8">Ready to Transform Your Business?</h2>
+            <p class="text-xl mb-10 max-w-3xl mx-auto">Partner with Monarch AG to unlock your company's full potential. Our tailored solutions are designed to drive growth and maximize efficiency.</p>
+            <a href="#" class="bg-white text-monarch-dark px-8 py-4 rounded-md font-medium hover:bg-gray-100 transition-colors text-lg">Schedule a Consultation</a>
+        </div>
+    </section>
+
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="container mx-auto px-4 md:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-3 mb-6">
+                        <div class="w-8 h-8 bg-white rounded-full flex items-center justify-center text-monarch-dark font-bold">M</div>
+                        <span class="text-xl font-display font-bold">Monarch AG</span>
+                    </div>
+                    <p class="text-gray-400">Empowering growth, one product at a time.</p>
+                    <div class="mt-6 flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-linkedin text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-twitter text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-facebook text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="font-semibold text-lg mb-4">Products</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">pyine</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">EC225</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">MindMapp</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="font-semibold text-lg mb-4">Company</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">About Us</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Our Team</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Careers</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="font-semibold text-lg mb-4">Contact</h3>
+                    <ul class="space-y-2">
+                        <li class="flex items-start space-x-3">
+                            <i class="fas fa-map-marker-alt mt-1 text-gray-400"></i>
+                            <span class="text-gray-400">123 Business Ave, Suite 100<br>Enterprise City, EC 12345</span>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <i class="fas fa-envelope text-gray-400"></i>
+                            <a href="mailto:info@monarchag.com" class="text-gray-400 hover:text-white transition-colors">info@monarchag.com</a>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <i class="fas fa-phone text-gray-400"></i>
+                            <a href="tel:+11234567890" class="text-gray-400 hover:text-white transition-colors">(123) 456-7890</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-12 pt-8 text-center">
+                <p>&copy; 2024 Monarch AG. All rights reserved.</p>
+            </div>
         </div>
     </footer>
 
@@ -102,83 +249,125 @@
         const assetValue = document.getElementById('assetValue');
         const productRevenue = document.getElementById('productRevenue');
 
-        function generateRandomColor() {
-            return '#' + Math.floor(Math.random() * 16777215).toString(16);
+        function generateProductIcon(product) {
+            if (product.name.toLowerCase().includes('py') || product.description.toLowerCase().includes('quant')) {
+                return 'fas fa-chart-line';
+            } else if (product.name.toLowerCase().includes('ec') || product.description.toLowerCase().includes('calculator')) {
+                return 'fas fa-calculator';
+            } else if (product.name.toLowerCase().includes('mind') || product.description.toLowerCase().includes('ai')) {
+                return 'fas fa-brain';
+            } else {
+                return 'fas fa-cube';
+            }
         }
 
-        document.documentElement.style.setProperty('--base-color', generateRandomColor());
-
-        const productSection = document.querySelector('section:nth-of-type(2)');
-        const assetSection = document.querySelector('section:nth-of-type(3)');
-
-        if (productsData.length === 0) {
-            productSection.previousElementSibling.style.display = 'none';
-            productSection.style.display = 'none';
-        }
-
-        if (assetsData.length === 0) {
-            assetSection.previousElementSibling.style.display = 'none';
-            assetSection.style.display = 'none';
+        function generateAssetIcon(asset) {
+            if (asset.name.toLowerCase().includes('venture') || asset.description.toLowerCase().includes('equity')) {
+                return 'fas fa-handshake';
+            } else if (asset.description.toLowerCase().includes('land')) {
+                return 'fas fa-landmark';
+            } else {
+                return 'fas fa-building';
+            }
         }
 
         function formatCurrency(value) {
             return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 0, maximumFractionDigits: 1 }).format(value);
         }
 
-        function addItem(item, grid) {
-            const a = document.createElement('a');
-            a.href = item.link;
-            let className = 'bg-white rounded-lg shadow-md p-4 hover:shadow-lg transition-all duration-300 border-2 ';
-            if (item.isDev) {
-                className += 'border-yellow-400 bg-yellow-100';
-            } else if (item.isDeprecated) {
-                className += 'border-gray-400 bg-gray-100';
-            } else {
-                className += 'border-transparent hover:border-monarch';
-            }
-            className += ' group h-32 flex flex-col justify-center items-center relative overflow-hidden';
-            a.className = className;
-
-            let valueDisplay = '';
-            if (item.isDev) {
-                valueDisplay = '<p class="text-sm text-yellow-600">Under Construction</p>';
-            } else if (item.isDeprecated) {
-                valueDisplay = '<p class="text-sm text-gray-600">Deprecated</p>';
-            } else if (!item.isFree) {
-                valueDisplay = `<p class="text-sm text-monarch-dark">${formatCurrency(item.value)}</p>`;
-            } else {
-                valueDisplay = '<p class="text-sm text-green-600">Free</p>';
+        function addProductItem(product) {
+            const cardDiv = document.createElement('div');
+            cardDiv.className = 'bg-white rounded-lg shadow-lg overflow-hidden card-hover';
+            
+            let statusClass = product.isDev ? 'bg-yellow-500' : 
+                             product.isDeprecated ? 'bg-gray-500' : 'bg-monarch';
+            
+            let statusText = product.isDev ? 'Under Development' : 
+                            product.isDeprecated ? 'Deprecated' : '';
+            
+            let statusBadge = statusText ? 
+                `<span class="absolute top-4 right-4 ${statusClass} text-white text-xs font-medium px-2 py-1 rounded-full">${statusText}</span>` : '';
+            
+            let icon = generateProductIcon(product);
+            
+            let pricingBadge = '';
+            if (!product.isDev && !product.isDeprecated) {
+                pricingBadge = product.isFree ? 
+                    '<span class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded">Free</span>' : 
+                    '<span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded">Premium</span>';
             }
 
-            let bgColor = item.isDev ? 'bg-yellow-400 text-black' :
-                item.isDeprecated ? 'bg-gray-400 text-white' :
-                    'bg-monarch text-white';
-
-            a.innerHTML = `
-                <div class="transition-all duration-300 group-hover:-translate-y-2 group-hover:scale-75 text-center">
-                    <span class="text-lg font-semibold text-gray-800">${item.name}</span>
-                    ${valueDisplay}
-                </div>
-                <div class="absolute inset-x-0 bottom-0 ${bgColor} p-2 transform translate-y-full transition-transform duration-300 group-hover:translate-y-0">
-                    <p class="text-sm">${item.description}</p>
-                </div>
+            cardDiv.innerHTML = `
+                <a href="${product.link}" class="block">
+                    <div class="relative">
+                        <div class="${statusClass} h-48 flex items-center justify-center text-white">
+                            <i class="${icon} text-5xl"></i>
+                        </div>
+                        ${statusBadge}
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-center mb-2">
+                            <h3 class="text-xl font-bold text-gray-800">${product.name}</h3>
+                            ${pricingBadge}
+                        </div>
+                        <p class="text-gray-600">${product.description}</p>
+                        <div class="mt-6 flex justify-end">
+                            <span class="text-monarch font-medium flex items-center">
+                                Learn more <i class="fas fa-arrow-right ml-2"></i>
+                            </span>
+                        </div>
+                    </div>
+                </a>
             `;
+            
+            productGrid.appendChild(cardDiv);
+        }
 
-            if (item.isDev || item.isDeprecated) {
-                const statusBar = document.createElement('div');
-                statusBar.className = `absolute top-0 left-0 right-0 ${item.isDev ? 'bg-yellow-400' : 'bg-gray-400'} text-black text-xs text-center py-1`;
-                statusBar.textContent = item.isDev ? 'Under Construction' : 'Deprecated';
-                a.appendChild(statusBar);
-            }
+        function addAssetItem(asset) {
+            const cardDiv = document.createElement('div');
+            cardDiv.className = 'bg-white rounded-lg shadow-lg overflow-hidden card-hover';
+            
+            let statusClass = asset.isDev ? 'bg-yellow-500' : 'bg-monarch';
+            let statusText = asset.isDev ? 'In Development' : '';
+            let statusBadge = statusText ? 
+                `<span class="absolute top-4 right-4 ${statusClass} text-white text-xs font-medium px-2 py-1 rounded-full">${statusText}</span>` : '';
+            
+            let icon = generateAssetIcon(asset);
+            
+            let valueBadge = asset.value ? 
+                `<span class="text-monarch-dark font-bold">Value: ${formatCurrency(asset.value)}</span>` : '';
 
-            grid.appendChild(a);
+            cardDiv.innerHTML = `
+                <a href="${asset.link}" class="block">
+                    <div class="relative">
+                        <div class="${statusClass} h-48 flex items-center justify-center text-white">
+                            <i class="${icon} text-5xl"></i>
+                        </div>
+                        ${statusBadge}
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-center mb-2">
+                            <h3 class="text-xl font-bold text-gray-800">${asset.name}</h3>
+                        </div>
+                        <p class="text-gray-600 mb-4">${asset.description}</p>
+                        ${valueBadge}
+                        <div class="mt-6 flex justify-end">
+                            <span class="text-monarch font-medium flex items-center">
+                                View details <i class="fas fa-arrow-right ml-2"></i>
+                            </span>
+                        </div>
+                    </div>
+                </a>
+            `;
+            
+            assetGrid.appendChild(cardDiv);
         }
 
         function updateMetrics() {
             productCount.textContent = productsData.length;
             assetCount.textContent = assetsData.length;
             const totalAssetValue = assetsData
-                .filter(item => !item.isFree && !item.isDev && item.value)
+                .filter(item => !item.isFree && item.value)
                 .reduce((sum, item) => sum + item.value, 0);
             assetValue.textContent = formatCurrency(totalAssetValue);
             const totalProductValue = productsData
@@ -189,7 +378,7 @@
 
         productsData.forEach((product, index) => {
             setTimeout(() => {
-                addItem(product, productGrid);
+                addProductItem(product);
                 if (index === productsData.length - 1) {
                     updateMetrics();
                 }
@@ -198,7 +387,7 @@
 
         assetsData.forEach((asset, index) => {
             setTimeout(() => {
-                addItem(asset, assetGrid);
+                addAssetItem(asset);
                 if (index === assetsData.length - 1) {
                     updateMetrics();
                 }
