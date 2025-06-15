@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Monarch AG - Premium Excellence</title>
-    <style>
+      <style>
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Crimson+Text:wght@400;600;700&display=swap');
         
         * {
@@ -146,11 +146,15 @@
             max-width: 1600px;
             margin: 0 auto;
             width: 100%;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
         
         .products-header {
             text-align: center;
             margin-bottom: 50px;
+            flex-shrink: 0;
         }
         
         .products-title {
@@ -173,8 +177,9 @@
             display: grid;
             grid-template-columns: 1fr 2fr;
             gap: 40px;
-            height: calc(100vh - 200px);
-            min-height: 600px;
+            flex: 1;
+            min-height: 0;
+            height: 100%;
         }
         
         .product-sidebar {
@@ -186,6 +191,8 @@
             box-shadow: 0 10px 40px var(--shadow);
             display: flex;
             flex-direction: column;
+            height: 100%;
+            overflow: hidden;
         }
         
         .sidebar-title {
@@ -204,6 +211,7 @@
             flex: 1;
             overflow-y: auto;
             padding-right: 10px;
+            min-height: 0;
         }
         
         .product-scroll::-webkit-scrollbar {
@@ -276,6 +284,7 @@
             position: relative;
             overflow: hidden;
             box-shadow: 0 10px 40px var(--shadow);
+            height: 100%;
         }
         
         .product-info:before {
@@ -479,6 +488,11 @@
         
         /* Mobile Responsive */
         @media (max-width: 1024px) {
+            .products-page {
+                height: auto;
+                min-height: 100vh;
+            }
+            
             .products-container {
                 grid-template-columns: 1fr;
                 gap: 25px;
@@ -658,7 +672,7 @@
                     <div class="contact-label">Private Office</div>
                     <div class="contact-value">Bahnhofstrasse 45, Zürich</div>
                 </div
-                -->>
+                -->
                 <div class="contact-item">
                     <div class="contact-label">Director & CEO</div>
                     <div class="contact-value">Tom Callan</div>
