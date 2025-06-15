@@ -29,17 +29,23 @@
             font-family: 'Crimson Text', serif;
             background: linear-gradient(135deg, var(--navy) 0%, var(--deep-blue) 50%, var(--steel-blue) 100%);
             color: var(--platinum);
-            overflow-x: hidden;
+            overflow: hidden;
             line-height: 1.6;
+            height: 100vh;
+            width: 100vw;
         }
         
         .page {
-            min-height: 100vh;
-            position: relative;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             display: none;
             opacity: 0;
             transform: translateY(10px);
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow: hidden;
         }
         
         .page.active {
@@ -93,6 +99,7 @@
             align-items: center;
             text-align: center;
             position: relative;
+            height: 100%;
             background: 
                 radial-gradient(circle at 30% 40%, rgba(192, 192, 192, 0.1) 0%, transparent 50%),
                 radial-gradient(circle at 70% 60%, rgba(52, 73, 94, 0.1) 0%, transparent 50%),
@@ -142,19 +149,30 @@
         
         /* Products Page */
         .products-page {
-            padding: 80px 20px 20px;
-            max-width: 1600px;
-            margin: 0 auto;
-            width: 100%;
-            height: 100vh;
             display: flex;
             flex-direction: column;
+            align-items: center;
+            padding: 80px 15px 15px;
+            height: 100%;
+            overflow: hidden;
         }
         
         .products-header {
             text-align: center;
-            margin-bottom: 50px;
-            flex-shrink: 0;
+            margin-bottom: 20px;
+            width: 100%;
+            max-width: 1600px;
+            padding-top: 20px;
+        }
+        
+        .products-container {
+            display: grid;
+            grid-template-columns: minmax(300px, 1fr) minmax(600px, 2fr);
+            gap: 30px;
+            width: 100%;
+            max-width: 1600px;
+            height: calc(100% - 135px);
+            margin-bottom: 15px;
         }
         
         .products-title {
@@ -171,15 +189,6 @@
             color: var(--silver);
             font-style: italic;
             letter-spacing: 1px;
-        }
-        
-        .products-container {
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 40px;
-            flex: 1;
-            min-height: 0;
-            height: 100%;
         }
         
         .product-sidebar {
@@ -397,14 +406,15 @@
         .contact-page {
             justify-content: center;
             align-items: center;
-            padding: 20px;
+            padding: 0 20px;
+            height: 100%;
         }
         
         .contact-container {
             background: rgba(15, 20, 25, 0.9);
             border: 1px solid rgba(192, 192, 192, 0.2);
             border-radius: 25px;
-            padding: 50px;
+            padding: 40px;
             backdrop-filter: blur(20px);
             max-width: 700px;
             width: 100%;
@@ -412,6 +422,7 @@
             position: relative;
             overflow: hidden;
             box-shadow: 0 15px 50px var(--shadow);
+            margin: auto;
         }
         
         .contact-container:before {
@@ -489,24 +500,23 @@
         /* Mobile Responsive */
         @media (max-width: 1024px) {
             .products-page {
-                height: auto;
-                min-height: 100vh;
+                padding: 60px 15px 15px;
             }
             
             .products-container {
                 grid-template-columns: 1fr;
-                gap: 25px;
-                height: auto;
+                gap: 15px;
+                height: calc(100% - 135px);
             }
             
             .product-sidebar {
                 order: 2;
-                height: 300px;
+                height: 200px;
             }
             
             .product-info {
                 order: 1;
-                min-height: 400px;
+                min-height: 300px;
             }
         }
         
@@ -516,11 +526,11 @@
             }
             
             .products-container {
-                gap: 20px;
+                gap: 15px;
             }
             
             .product-sidebar, .product-info {
-                padding: 25px;
+                padding: 20px;
             }
             
             .nav {
@@ -535,8 +545,8 @@
             }
             
             .contact-container {
-                padding: 35px 25px;
-                margin: 15px;
+                padding: 30px 20px;
+                margin: 15px auto;
             }
             
             .info-title {
